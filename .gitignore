@@ -10,3 +10,5 @@ __pycache__/
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+/env/*
