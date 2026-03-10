@@ -140,32 +140,54 @@ class DataManager:
         for column in self.get_columns_names():
             print(f"\nColumn: '{column}'")
 
-            counts_dict = self.get_column_values(column)
+            is_numeric = pd.api.types.is_numeric_dtype(self.df[column])
+            unique_count = self.df[column].nunique()
 
-            if not counts_dict:
-                print("  Column is empty (only NaN values).")
-                continue
-
-            unique_count = len(counts_dict)
-            total_count = sum(counts_dict.values())
-
-            if unique_count > max_unique_values:
-                print(f"  Too many unique values ({unique_count} distinct values). Showing top 5 most frequent:")
-                items_to_show = list(counts_dict.items())[:5]
-            else:
-                items_to_show = list(counts_dict.items())
-
-            for val, count in items_to_show:
-                percent = (count / total_count) * 100
-
-                print(f"  - Value '{val}': {count} occurrences ({percent:.2f}%)")
-
+            if is_numeric and unique_count > max_unique_values:
+                desc = self.df[column].describe()
+                print("  Type: Continuous Numerical")
+                print(f"  - Mean:   {desc['mean']:.4f}")
+                print(f"  - Std:    {desc['std']:.4f}")
+                print(f"  - Min:    {desc['min']:.4f}")
+                print(f"  - Median: {desc['50%']:.4f}")
+                print(f"  - Max:    {desc['max']:.4f}")
+                
                 csv_data.append({
                     'Column': column,
-                    'Value': val,
-                    'Count': count,
-                    'Percentage (%)': round(percent, 2)
+                    'Type': 'Continuous',
+                    'Info_1': f"Mean: {desc['mean']:.4f}",
+                    'Info_2': f"Std: {desc['std']:.4f}",
+                    'Info_3': f"Min: {desc['min']:.4f} / Max: {desc['max']:.4f}"
                 })
+
+            else:
+
+                counts_dict = self.get_column_values(column)
+
+                if not counts_dict:
+                    print("  Column is empty (only NaN values).")
+                    continue
+
+                unique_count = len(counts_dict)
+                total_count = sum(counts_dict.values())
+
+                if unique_count > max_unique_values:
+                    print(f"  Too many unique values ({unique_count} distinct values). Showing top 5 most frequent:")
+                    items_to_show = list(counts_dict.items())[:5]
+                else:
+                    items_to_show = list(counts_dict.items())
+
+                for val, count in items_to_show:
+                    percent = (count / total_count) * 100
+
+                    print(f"  - Value '{val}': {count} occurrences ({percent:.2f}%)")
+
+                    csv_data.append({
+                        'Column': column,
+                        'Value': val,
+                        'Count': count,
+                        'Percentage (%)': round(percent, 2)
+                    })
 
         print("\n---------------------------------")
 
