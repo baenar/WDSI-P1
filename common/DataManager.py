@@ -1,8 +1,9 @@
 import os
 
 import pandas as pd
+import numpy as np
 import operator
-from typing import List, Dict, Any, Callable, Optional
+from typing import List, Dict, Any, Callable, Optional, Tuple
 
 
 class DataManager:
@@ -120,6 +121,49 @@ class DataManager:
         else:
             print(f"  Warning: Column '{column_name}' not found in the dataset.")
 
+    def get_default_learn_test_data_split(self, target_column: str, test_size: float = 0.3) \
+            -> Tuple[Optional[pd.DataFrame], Optional[pd.DataFrame], Optional[pd.Series], Optional[pd.Series]]:
+        """
+        Splits the data into training and testing sets using Systematic Sampling.
+        Sorts the dataset by all columns prioritizing the target and picks evenly spaced
+        rows for the test set to ensure a highly uniform distribution.
+
+        Args:
+            target_column (str): The name of the target variable to predict.
+            test_size (float): Proportion of the dataset to include in the test split, by default 0.3.
+
+        Returns:
+            Tuple: A tuple containing (X_train, X_test, y_train, y_test).
+        """
+        if self.df is None or target_column not in self.df.columns:
+            print(f"Error: Target column '{target_column}' not found or dataset is empty.")
+            return None, None, None, None
+
+        print(f"Performing systematic split ({100 - test_size * 100:.0f}% train, {test_size * 100:.0f}% test)...")
+
+        # SORTING DATAFRAME
+        sort_cols = [target_column] + [col for col in self.df.columns if col != target_column]
+        sorted_df = self.df.sort_values(by=sort_cols).reset_index(drop=True)
+
+        # PREPARING INDICES OF WANTED TEST ROWS
+        total_rows = len(sorted_df)
+        num_test_samples = int(total_rows * test_size)
+        test_indices = np.linspace(0, total_rows - 1, num_test_samples, dtype=int)
+        is_test = np.zeros(total_rows, dtype=bool)
+        is_test[test_indices] = True
+
+        # SPLITTING DATAFRAME
+        test_df = sorted_df[is_test]
+        train_df = sorted_df[~is_test]
+
+        # SPLITTING FOR X AND Y
+        X_train = train_df.drop(columns=[target_column])
+        y_train = train_df[target_column]
+        X_test = test_df.drop(columns=[target_column])
+        y_test = test_df[target_column]
+
+        return X_train, X_test, y_train, y_test
+
     def print_data_summary(self, max_unique_values: int = 20, output_file_path: Optional[str] = None) -> None:
         """
         Prints a summary of the data distribution for each column (numerical count and percentage).
@@ -198,7 +242,6 @@ class DataManager:
                 if directory and not os.path.exists(directory):
                     os.makedirs(directory)
                     print(f"Created missing directory: {directory}")
-
                 summary_df = pd.DataFrame(csv_data)
                 summary_df.to_csv(output_file_path, index=False)
                 print(f"\nSummary successfully saved to: {output_file_path}")
