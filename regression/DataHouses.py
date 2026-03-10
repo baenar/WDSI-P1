@@ -1,6 +1,6 @@
+import operator
 import os
 import pandas as pd
-from sympy.logic.boolalg import Boolean
 
 from common.DataManager import DataManager
 
@@ -22,6 +22,9 @@ class DataHouses(DataManager):
             return
 
         print("Starting data cleaning process...")
+
+        # REMOVING RECORDS WHERE GrLivArea IS GREATER THAN 4000 (as the data description suggested)
+        self.remove_rows_from_set_by_column_value('GrLivArea', 4000, op=operator.gt)
 
         # DROPPING USELESS COLUMNS
         columns_to_drop = [
