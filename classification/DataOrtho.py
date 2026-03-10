@@ -37,13 +37,3 @@ class DataOrtho(DataManager):
             print("Encoded target column 'growth direction' to numerical values.")
 
         print("Orthodontic data cleaning completed.")
-
-    def get_features_and_target(self, target_column: str = 'growth direction'):
-        """
-        Helper method to quickly split the dataset into X (features) and y (target).
-        """
-        if self.df is not None and target_column in self.df.columns:
-            X = self.df.drop(columns=[target_column])
-            y = self.df[target_column]
-            return X, y
-        return None, None
