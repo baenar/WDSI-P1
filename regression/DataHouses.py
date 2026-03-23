@@ -50,7 +50,8 @@ class DataHouses(DataManager):
             'BsmtFinType1',
             'BsmtFinType2',
             'MasVnrType',
-            'FireplaceQu'
+            'FireplaceQu',
+            'GarageYrBlt'
         ]
         for col in categorical_cols_with_na:
             self.replace_value_in_column(col, '?', 'None')
@@ -58,8 +59,7 @@ class DataHouses(DataManager):
         # REPLACING '?' WITH 0
         numerical_cols_with_na = [
             'MasVnrArea',
-            'LotFrontage',
-            'GarageYrBlt'
+            'LotFrontage'
         ]
         for col in numerical_cols_with_na:
             self.replace_value_in_column(col, '?', '0')
