@@ -199,9 +199,13 @@ class DataManager:
                 csv_data.append({
                     'Column': column,
                     'Type': 'Continuous',
-                    'Info_1': f"Mean: {desc['mean']:.4f}",
-                    'Info_2': f"Std: {desc['std']:.4f}",
-                    'Info_3': f"Min: {desc['min']:.4f} / Max: {desc['max']:.4f}"
+                    'Mean': f"{desc['mean']:.4f}",
+                    'Std': f"{desc['std']:.4f}",
+                    'Min': f"{desc['min']:.4f}",
+                    '25%': f"{desc['25%']:.4f}",
+                    '50%': f"{desc['50%']:.4f}",
+                    '75%': f"{desc['75%']:.4f}",
+                    'Max': f"{desc['max']:.4f}"
                 })
 
             else:
