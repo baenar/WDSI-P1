@@ -1,7 +1,7 @@
 --- DATAFRAME INFO ---
 <class 'pandas.DataFrame'>
 RangeIndex: 446 entries, 0 to 445
-Data columns (total 27 columns):
+Data columns (total 20 columns):
  #   Column             Non-Null Count  Dtype  
 ---  ------             --------------  -----  
  0   9_SN/MP            446 non-null    float64
@@ -10,29 +10,22 @@ Data columns (total 27 columns):
  3   9_Mn Base angle    446 non-null    float64
  4   9_Mn Ramus Angle   446 non-null    float64
  5   9_SNPog            446 non-null    float64
- 6   9_SNB              446 non-null    float64
- 7   9_SNA              446 non-null    float64
- 8   9_SN/PP            446 non-null    float64
- 9   9_ANB              446 non-null    float64
- 10  9_AFH:PFH          446 non-null    float64
- 11  9_PgNB             446 non-null    float64
- 12  9_beta angle       446 non-null    float64
- 13  12_SN/MP           446 non-null    float64
- 14  12_Facial axis     446 non-null    float64
- 15  12_Y-axis          446 non-null    float64
- 16  12_Mn Base angle   446 non-null    float64
- 17  12_Mn Ramus Angle  446 non-null    float64
- 18  12_SNPog           446 non-null    float64
- 19  12_SNB             446 non-null    float64
- 20  12_SNA             446 non-null    float64
- 21  12_SN/PP           446 non-null    float64
- 22  12_ANB             446 non-null    float64
- 23  12_AFH:PFH         446 non-null    float64
- 24  12_PgNB            446 non-null    float64
- 25  12_beta angle      446 non-null    float64
- 26  growth direction   446 non-null    int64  
-dtypes: float64(26), int64(1)
-memory usage: 94.2 KB
+ 6   9_SNA              446 non-null    float64
+ 7   9_SN/PP            446 non-null    float64
+ 8   9_ANB              446 non-null    float64
+ 9   9_PgNB             446 non-null    float64
+ 10  9_beta angle       446 non-null    float64
+ 11  12_Facial axis     446 non-null    float64
+ 12  12_Mn Base angle   446 non-null    float64
+ 13  12_Mn Ramus Angle  446 non-null    float64
+ 14  12_SNPog           446 non-null    float64
+ 15  12_SNA             446 non-null    float64
+ 16  12_SN/PP           446 non-null    float64
+ 17  12_ANB             446 non-null    float64
+ 18  12_PgNB            446 non-null    float64
+ 19  growth direction   446 non-null    int64  
+dtypes: float64(19), int64(1)
+memory usage: 69.8 KB
 
 
 --- SUMMARY STATISTICS ---
@@ -43,24 +36,17 @@ memory usage: 94.2 KB
 9_Mn Base angle    446.0    1.946258  1.407175   -1.855797    0.921260    1.937554    2.861721    6.200186
 9_Mn Ramus Angle   446.0  122.568512  5.581123  106.273890  118.904444  122.855447  126.266211  137.616824
 9_SNPog            446.0   77.290273  3.140499   68.094393   75.135247   77.308051   79.331829   86.862239
-9_SNB              446.0   76.339302  3.046515   67.770015   74.086700   76.161821   78.261735   84.787099
 9_SNA              446.0   80.718170  3.404900   72.707404   78.469479   80.618224   82.869704   93.149888
 9_SN/PP            446.0    7.204316  3.203708   -3.371575    5.089419    7.085342    9.165975   18.750681
 9_ANB              446.0   -4.378868  2.058331   -9.725989   -5.792613   -4.480021   -2.935589    0.945465
-9_AFH:PFH          446.0    1.466034  0.077032    1.230321    1.412721    1.469337    1.516694    1.703877
 9_PgNB             446.0    0.950747  0.711865   -1.131231    0.486863    0.976407    1.435451    3.559659
 9_beta angle       446.0   20.103708  2.402912   12.671876   18.377807   20.087922   21.571410   30.414008
-12_SN/MP           446.0   32.336289  4.723713   19.708797   29.098782   32.266668   35.812327   45.960865
 12_Facial axis     446.0   88.232604  3.661869   75.827096   85.586465   87.972526   90.729237   99.772896
-12_Y-axis          446.0   66.535953  3.175055   56.529929   64.433521   66.309870   68.609288   74.717246
 12_Mn Base angle   446.0    2.569964  1.397803   -1.592408    1.640817    2.541229    3.437915    6.987558
 12_Mn Ramus Angle  446.0  121.245704  5.566098  104.789965  117.373239  121.047114  125.040958  139.166983
 12_SNPog           446.0   78.450767  3.130976   70.481570   76.424090   78.337574   80.338232   88.868366
-12_SNB             446.0   77.290843  3.089604   70.187880   75.281835   77.129546   79.223116   86.982279
 12_SNA             446.0   81.212121  3.452230   72.099648   78.721307   81.119388   83.389647   92.429272
 12_SN/PP           446.0    7.165841  3.103847   -1.292949    5.238621    7.262479    9.323639   15.053215
 12_ANB             446.0   -3.921278  2.158409  -10.293067   -5.370657   -4.014321   -2.372826    2.579310
-12_AFH:PFH         446.0    1.446325  0.075403    1.244515    1.393239    1.445952    1.501029    1.650425
 12_PgNB            446.0    1.160148  0.727387   -1.068884    0.656741    1.162735    1.671685    3.176099
-12_beta angle      446.0   20.801461  2.384866   13.056881   19.067425   20.820688   22.318562   29.655680
 growth direction   446.0   -0.376682  0.554284   -1.000000   -1.000000    0.000000    0.000000    1.000000
