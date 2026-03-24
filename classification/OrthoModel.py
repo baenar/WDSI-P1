@@ -1,9 +1,10 @@
 from sklearn import tree, ensemble, neighbors, neural_network
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV, StratifiedKFold, cross_val_predict
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.metrics import classification_report, confusion_matrix
+
 from imblearn.pipeline import Pipeline as ImbPipeline
 from imblearn.over_sampling import SMOTE
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
 import pandas as pd
 import numpy as np
@@ -42,22 +43,18 @@ class OrthoModel:
         # Definicje parametrów
         param_spaces = {
             "Decision Tree": {
-                'model__max_depth': [None, 5, 10, 15],
-                'model__min_samples_split': [2, 5, 10],
-                'model__class_weight': ['balanced', None]
+                'model__max_depth': [5, 10, 15],
+                'model__min_samples_leaf': [2, 5, 10],
             },
             "Random Forest": {
                 'model__n_estimators': [50, 100, 200, 300],
-                'model__max_depth': [None, 10, 20, 30],
-                'model__class_weight': ['balanced', 'balanced_subsample']
+                'model__max_depth': [10, 20, 30],
             },
             "KNN": {
                 'model__n_neighbors': [3, 5, 7, 9],
-                'model__weights': ['uniform', 'distance']
             },
             "MLP": {
                 'model__hidden_layer_sizes': [(50,), (100,), (50, 50), (100, 50)],
-                'model__activation': ['relu', 'tanh'],
                 'model__alpha': [0.0001, 0.001, 0.01]
             }
         }

@@ -2,18 +2,18 @@
 Model: Decision Tree
 Optimizer: GridSearchCV
 Best parameters:
-{'model__class_weight': 'balanced', 'model__max_depth': 5, 'model__min_samples_split': 10}
-Best score (F1 Macro during search): 0.6713
+{'model__max_depth': 5, 'model__min_samples_leaf': 2}
+Best score (F1 Macro during search): 0.6726
 
 Overall CV report (cross_val_predict):
               precision    recall  f1-score   support
 
-          -1       0.67      0.76      0.71       184
+          -1       0.66      0.76      0.71       184
            0       0.79      0.70      0.74       246
-           1       0.53      0.62      0.57        16
+           1       0.56      0.62      0.59        16
 
     accuracy                           0.72       446
-   macro avg       0.66      0.69      0.67       446
+   macro avg       0.67      0.69      0.68       446
 weighted avg       0.73      0.72      0.72       446
 
 
@@ -21,18 +21,18 @@ weighted avg       0.73      0.72      0.72       446
 Model: Random Forest
 Optimizer: RandomizedSearchCV
 Best parameters:
-{'model__n_estimators': 300, 'model__max_depth': 10, 'model__class_weight': 'balanced'}
-Best score (F1 Macro during search): 0.6800
+{'model__n_estimators': 200, 'model__max_depth': 30}
+Best score (F1 Macro during search): 0.6824
 
 Overall CV report (cross_val_predict):
               precision    recall  f1-score   support
 
-          -1       0.80      0.75      0.77       184
+          -1       0.79      0.74      0.77       184
            0       0.79      0.83      0.81       246
-           1       0.50      0.44      0.47        16
+           1       0.54      0.44      0.48        16
 
     accuracy                           0.78       446
-   macro avg       0.70      0.67      0.68       446
+   macro avg       0.70      0.67      0.69       446
 weighted avg       0.78      0.78      0.78       446
 
 
@@ -40,7 +40,7 @@ weighted avg       0.78      0.78      0.78       446
 Model: KNN
 Optimizer: GridSearchCV
 Best parameters:
-{'model__n_neighbors': 9, 'model__weights': 'uniform'}
+{'model__n_neighbors': 9}
 Best score (F1 Macro during search): 0.5934
 
 Overall CV report (cross_val_predict):
@@ -59,7 +59,7 @@ weighted avg       0.73      0.67      0.68       446
 Model: MLP
 Optimizer: RandomizedSearchCV
 Best parameters:
-{'model__hidden_layer_sizes': (100, 50), 'model__alpha': 0.001, 'model__activation': 'relu'}
+{'model__hidden_layer_sizes': (100, 50), 'model__alpha': 0.001}
 Best score (F1 Macro during search): 0.6699
 
 Overall CV report (cross_val_predict):

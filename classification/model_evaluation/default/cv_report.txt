@@ -1,0 +1,76 @@
+========================================
+Model: Decision Tree
+Optimizer: GridSearchCV
+Best parameters:
+{'model__max_depth': 5, 'model__min_samples_leaf': 5}
+Best score (F1 Macro during search): 0.5853
+
+Overall CV report (cross_val_predict):
+              precision    recall  f1-score   support
+
+          -1       0.73      0.72      0.73       184
+           0       0.75      0.78      0.77       246
+           1       0.38      0.31      0.34        16
+
+    accuracy                           0.74       446
+   macro avg       0.62      0.60      0.61       446
+weighted avg       0.73      0.74      0.73       446
+
+
+========================================
+Model: Random Forest
+Optimizer: RandomizedSearchCV
+Best parameters:
+{'model__n_estimators': 300, 'model__max_depth': 10}
+Best score (F1 Macro during search): 0.6205
+
+Overall CV report (cross_val_predict):
+              precision    recall  f1-score   support
+
+          -1       0.81      0.75      0.78       184
+           0       0.78      0.87      0.82       246
+           1       0.75      0.19      0.30        16
+
+    accuracy                           0.79       446
+   macro avg       0.78      0.60      0.63       446
+weighted avg       0.79      0.79      0.79       446
+
+
+========================================
+Model: KNN
+Optimizer: GridSearchCV
+Best parameters:
+{'model__n_neighbors': 3}
+Best score (F1 Macro during search): 0.5323
+
+Overall CV report (cross_val_predict):
+              precision    recall  f1-score   support
+
+          -1       0.61      0.63      0.62       184
+           0       0.68      0.69      0.68       246
+           1       0.57      0.25      0.35        16
+
+    accuracy                           0.65       446
+   macro avg       0.62      0.52      0.55       446
+weighted avg       0.65      0.65      0.65       446
+
+
+========================================
+Model: MLP
+Optimizer: RandomizedSearchCV
+Best parameters:
+{'model__hidden_layer_sizes': (100,), 'model__alpha': 0.0001}
+Best score (F1 Macro during search): 0.6177
+
+Overall CV report (cross_val_predict):
+              precision    recall  f1-score   support
+
+          -1       0.65      0.76      0.70       184
+           0       0.76      0.67      0.71       246
+           1       0.58      0.44      0.50        16
+
+    accuracy                           0.70       446
+   macro avg       0.66      0.62      0.64       446
+weighted avg       0.70      0.70      0.70       446
+
+
