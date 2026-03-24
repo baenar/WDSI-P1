@@ -51,19 +51,19 @@ class DataHouses(DataManager):
             'BsmtFinType2',
             'MasVnrType',
             'FireplaceQu',
+            'GarageYrBlt'
         ]
         for col in categorical_cols_with_na:
             self.replace_value_in_column(col, '?', 'None')
 
-        # REPLACING '?' WITH MEDIAN FOR NUMERICAL COLUMNS
+        # REPLACING '?' WITH 0
         numerical_cols_with_na = [
             'MasVnrArea',
-            'LotFrontage',
-            'GarageYrBlt',
+            'LotFrontage'
         ]
         for col in numerical_cols_with_na:
-            median_val = pd.to_numeric(self.df[col].replace('?', pd.NA), errors='coerce').median()
-            self.replace_value_in_column(col, '?', median_val)
+            self.replace_value_in_column(col, '?', '0')
+            self.df[col] = pd.to_numeric(self.df[col])
 
         # REPLACE WORD QUALITY WITH NUMERICAL VALUE
         quality_map = {
